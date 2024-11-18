@@ -1,6 +1,6 @@
 <x-layout>
     <x-hero />
-    <x-blog-section/>
+    <x-blog-section :blogs="$blogs"/>
     <x-subcribe />
 </x-layout>
 

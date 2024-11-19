@@ -22,9 +22,9 @@ Route::get('/blogs/{blog:slug}', function(Blog $blog){
 Route::get('/categories/{category:slug}', function(Category $category){
    $blogs = $category->blogs;
    return view('blogs', compact('blogs'));
-})->name('category#slug');
+})->name('category');
 
 Route::get('/author/{user:username}', function(User $user){
     $blogs = $user->blogs;
     return view('blogs', compact('blogs'));
-})->name('blogs#author');
+})->name('author');

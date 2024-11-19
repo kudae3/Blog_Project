@@ -11,8 +11,12 @@
             />
             <h3 class="my-3">{{$blog->title}}</h3>
             <div>
-                <btn class="btn btn-primary p-2 mb-2">{{$blog->category->name}}</btn>
-                <p>{{$blog->author->name}}</p>
+                <a href={{route('category', $blog->category->slug)}}>
+                    <btn class="btn btn-primary p-2 mb-2">{{$blog->category->name}}</btn>
+                </a>
+                <a href={{route('author', $blog->author->username)}}>
+                    <p class="fw-bold">{{$blog->author->name}}</p>
+                </a>
                 <p>{{$blog->created_at->diffForHumans()}}</p>
             </div>
             <p class="lh-md">{{$blog->body}}</p>

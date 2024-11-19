@@ -8,8 +8,13 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    $blogs = Blog::with('category')->latest()->get();
+    $blogs = Blog::with('category')->latest();
     $categories = Category::all();
+
+    if(request('search')){
+        $blogs = $blogs->where('title', 'LIKE', '%'.request('search').'%');
+    };
+    $blogs = $blogs->get();
     return view('blogs', compact('blogs', 'categories'));
 });
 

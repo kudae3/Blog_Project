@@ -1,15 +1,20 @@
-@props(['blogs'])
+@props(['blogs', 'categories', 'currentcategory'])
+
 <section class="container text-center" id="blogs">
 
     <h1 class="display-5 fw-bold mb-4">Blogs</h1>
 
 <div class="">
     <div class="dropdown">
+
         <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-          Dropdown button
+          {{isset($currentcategory) ? $currentcategory->name : 'Filter By Category'}}
         </button>
+
         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-          <li><a class="dropdown-item" href="#">Action</a></li>
+          @foreach ($categories as $category)
+            <li><a class="dropdown-item" href={{route('category', $category->slug)}}>{{$category->name}}</a></li>
+          @endforeach
         </ul>
       </div>
 </div>

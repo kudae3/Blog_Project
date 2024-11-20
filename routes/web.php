@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BlogController;
 use App\Models\Blog;
 use App\Models\Category;
 use App\Models\User;
@@ -7,24 +8,9 @@ use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    $blogs = Blog::with('category')->latest();
-    $categories = Category::all();
+Route::get('/', [BlogController::class, 'index']);
 
-    if(request('search')){
-        $blogs = $blogs->where('title', 'LIKE', '%'.request('search').'%');
-    };
-    $blogs = $blogs->get();
-    return view('blogs', compact('blogs', 'categories'));
-});
-
-Route::get('/blogs/{blog:slug}', function(Blog $blog){
-    return view('blog', [
-        'blog' => $blog,
-        'randomBlogs' => Blog::inRandomOrder()->take(3)->get(),
-        'categories' => Category::all()
-    ]);
-})->name('blog');
+Route::get('/blogs/{blog:slug}', [BlogController::class, 'show'])->name('blog');
 
 Route::get('/categories/{category:slug}', function(Category $category){
    $blogs = $category->blogs;

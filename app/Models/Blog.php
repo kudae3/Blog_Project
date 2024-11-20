@@ -9,6 +9,13 @@ class Blog extends Model
 {
     use HasFactory;
 
+    public function scopeFilter($query, $filter){
+        $query->when($filter['search'],function($query,$search){
+            $query->where('body', 'like', '%'.$search.'%')
+                ->orWhere('title', 'like', '%'.$search.'%');
+        });
+    }
+
     protected $with = ['category', 'author'];
 
     protected $guarded = [];

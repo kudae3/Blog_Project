@@ -12,6 +12,7 @@ class BlogController extends Controller
     public function index() {
 
         $categories = Category::all();
+        // $blogs = $this->getBlogs();
         $blogs = Blog::latest()->filter(request(['search']))->get();
 
         return view('blogs', compact('blogs', 'categories'));
@@ -27,15 +28,19 @@ class BlogController extends Controller
     }
 
     //get blogs
-    // protected function getBlogs(){
+    protected function getBlogs(){
 
-    //     // $query->when(request('search'),function($query,$search){
-    //     //     $query->where('body', 'like', '%'.$search.'%')
-    //     //         ->orWhere('title', 'like', '%'.$search.'%');
-    //     // });
+        $query = Blog::latest();
+
+        $query->when(request('search'),function($query,$search){
+            $query->where(function($query) use($search){
+                $query  ->where('body', 'like', '%'.$search.'%')
+                        ->orWhere('title', 'like', '%'.$search.'%');
+            });
+        });
 
 
-    //     return $query->get();
-    // }
+        return $query->get();
+    }
 
 }

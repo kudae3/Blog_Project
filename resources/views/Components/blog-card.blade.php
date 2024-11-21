@@ -18,7 +18,7 @@
             </p>
 
             <div class="tags my-3">
-                <a href={{route('category', $blog->category->slug)}}><span class="badge bg-primary">
+                <a href='/?category={{$blog->category->slug}}'><span class="badge bg-primary">
                     {{$blog->category->name}}
                 </span></a>
                 {{-- <span class="badge bg-secondary">Css</span>

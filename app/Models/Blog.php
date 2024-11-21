@@ -10,10 +10,17 @@ class Blog extends Model
     use HasFactory;
 
     public function scopeFilter($query, $filter){
+
         $query->when($filter['search']??false,function($query,$search){
             $query->where(function($query) use($search){
                 $query->where('title','like', '%'.$search.'%')
                 ->orWhere('body', 'like', '%'.$search.'%');
+            });
+        });
+
+        $query->when($filter['category']??false,function($query, $slug){
+            $query->whereHas('category', function($query) use($slug){
+                $query->where('slug', $slug);
             });
         });
     }

@@ -11,10 +11,10 @@
             />
             <h3 class="my-3">{{$blog->title}}</h3>
             <div>
-                <a href={{route('category', $blog->category->slug)}}>
+                <a href='/?={{$blog->category->name}}'>
                     <btn class="btn btn-primary p-2 mb-2">{{$blog->category->name}}</btn>
                 </a>
-                <a href={{route('author', $blog->author->username)}}>
+                <a href='/?={{$blog->author->username}}'>
                     <p class="fw-bold">{{$blog->author->name}}</p>
                 </a>
                 <p>{{$blog->created_at->diffForHumans()}}</p>

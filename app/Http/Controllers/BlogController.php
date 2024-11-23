@@ -11,22 +11,18 @@ class BlogController extends Controller
     //all blogs (main page)
     public function index() {
 
-        $categories = Category::all();
-
         // $blogs = $this->getBlogs();
 
-        $blogs = Blog::latest()->filter(request(['search','category']))->get();
+        $blogs = Blog::latest()->filter(request(['search','category', 'author']))->get();
 
-        return view('blogs', compact('blogs', 'categories'));
+        return view('blogs', compact('blogs'));
     }
 
     //single blog
     public function show (Blog $blog){
-        return view('blog', [
-            'blog' => $blog,
-            'randomBlogs' => Blog::inRandomOrder()->take(3)->get(),
-            'categories' => Category::all()
-        ]);
+        // $blog = $blog;
+        $randomBlogs = Blog::inRandomOrder()->take(3)->get();
+        return view('blog', compact('blog', 'randomBlogs'));
     }
 
     //get blogs

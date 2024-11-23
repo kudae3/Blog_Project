@@ -13,7 +13,7 @@
             <h3 class="card-title">{{$blog->title}}</h3>
 
             <p class="fs-6 text-secondary">
-                <a href={{route('author', $blog->author->username)}}>{{$blog->author->name}}</a>
+                <a href='/?author={{$blog->author->username}}'>{{$blog->author->name}}</a>
                 <span> - {{$blog->created_at->diffForHumans()}}</span>
             </p>
 
@@ -31,7 +31,7 @@
                {{$blog->intro}}
             </p>
 
-            <a href="{{route('blog', $blog->slug)}}" class="btn btn-primary">Read More</a>
+            <a href='/blogs/{{$blog->slug}}' class="btn btn-primary">Read More</a>
 
         </div>
 

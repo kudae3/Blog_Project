@@ -13,7 +13,9 @@ class BlogController extends Controller
 
         // $blogs = $this->getBlogs();
 
-        $blogs = Blog::latest()->filter(request(['search','category', 'author']))->get();
+        $blogs = Blog::latest()->filter(request(['search','category', 'author']))
+                                ->paginate(6)
+                                ->withQueryString();
 
         return view('blogs', compact('blogs'));
     }

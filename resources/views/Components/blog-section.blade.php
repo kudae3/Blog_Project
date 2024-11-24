@@ -50,6 +50,7 @@
     @empty
         <p class="fw-bold text-center p-3">No Blog Found.</p>
     @endforelse
+    {{$blogs->links()}}
 </div>
 
 </section>

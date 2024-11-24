@@ -8,6 +8,23 @@
 
 <form action="" class="my-3">
     <div class="input-group mb-3">
+
+    @if (request('category'))
+    <input
+        name="category"
+        type="hidden"
+        value="{{request('category')}}"
+    />
+    @endif
+
+    @if (request('author'))
+    <input
+        name="author"
+        type="hidden"
+        value="{{request('author')}}"
+    />
+    @endif
+
     <input
         name="search"
         type="text"
@@ -16,6 +33,7 @@
         class="form-control"
         placeholder="Search Blogs..."
     />
+
     <button
         class="input-group-text bg-primary text-light"
         id="basic-addon2"

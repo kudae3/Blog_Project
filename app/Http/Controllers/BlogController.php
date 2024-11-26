@@ -17,14 +17,14 @@ class BlogController extends Controller
                                 ->paginate(6)
                                 ->withQueryString();
 
-        return view('blogs', compact('blogs'));
+        return view('blog.index', compact('blogs'));
     }
 
     //single blog
     public function show (Blog $blog){
         // $blog = $blog;
         $randomBlogs = Blog::inRandomOrder()->take(3)->get();
-        return view('blog', compact('blog', 'randomBlogs'));
+        return view('blog.show', compact('blog', 'randomBlogs'));
     }
 
     //get blogs

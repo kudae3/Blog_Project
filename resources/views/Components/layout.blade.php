@@ -21,7 +21,17 @@
         <div class="container">
             <a class="navbar-brand" href="/">Creative Coder</a>
             <div class="d-flex">
-            <a href="/register" class="nav-link">Register</a>
+
+            @auth()
+                <a href="/" class="nav-link">{{auth()->user()->name}}</a>
+                <form action="/logout" method="post">
+                    @csrf
+                    <button class="nav-link btn btn-submit">Logut</button>
+                </form>
+            @else
+                <a href="/register" class="nav-link">Register</a>
+            @endauth
+
             <a href="#blogs" class="nav-link">Blogs</a>
             <a href="#subscribe" class="nav-link">Subscribe</a>
             </div>

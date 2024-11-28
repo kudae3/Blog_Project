@@ -22,6 +22,14 @@ class AuthController extends Controller
 
         $user = User::create($formData);
         // session()->flash('success', 'Welcome, '.$user->name.'!');
+
+        auth()->login($user);
+
         return redirect('/')->with('success', 'Welcome, '.$user->name.'!');
+    }
+
+    public function logout(){
+        auth()->logout();
+        return redirect('/')->with('success', 'Good Bye!');
     }
 }

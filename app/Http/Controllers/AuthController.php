@@ -20,8 +20,8 @@ class AuthController extends Controller
             'password'=>'required|min:5'
         ]);
 
-        User::create($formData);
-
-        return redirect('/');
+        $user = User::create($formData);
+        // session()->flash('success', 'Welcome, '.$user->name.'!');
+        return redirect('/')->with('success', 'Welcome, '.$user->name.'!');
     }
 }

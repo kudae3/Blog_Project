@@ -29,6 +29,7 @@ class AuthController extends Controller
         return redirect('/')->with('success', 'Welcome, '.$user->name.'!');
     }
 
+    // handle Logout
     public function logout(){
         auth()->logout();
         return redirect('/')->with('success', 'Good Bye!');

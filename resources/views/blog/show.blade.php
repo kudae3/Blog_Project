@@ -24,8 +24,8 @@
         </div>
     </div>
 
+    <x-comments :comments="$blog->comments" />
     <x-subcribe />
-
     <x-suggest-blogs :blogs="$randomBlogs" />
 
 </x-layout>

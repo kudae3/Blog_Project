@@ -21,7 +21,7 @@ class DatabaseSeeder extends Seeder
         // Category::truncate();
         // Blog::truncate();
 
-        $Alex = User::factory()->create(['name'=>'Alex','username'=>'Alex']);
+        $Alex = User::factory()->create(['name'=>'Alex','username'=>'Alex', 'email' => 'Alex@gmail.com', 'password' => 'alex123']);
         $Thomas = User::factory()->create(['name'=>'Thomas','username'=>'Thomas']);
 
         $frontend = Category::factory()->create(['name' => 'Frontend', 'slug'=> 'Frontend']);

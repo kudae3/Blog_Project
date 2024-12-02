@@ -13,7 +13,6 @@ return new class extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->string('avatar')->nullable()
-                        ->default('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmnZMysSEdWVO3WxRp7ruaLMztl-sy4YZqMm1Vcf9aqOpLaMEyqSrz0aw&s')
                         ->after('username');
         });
     }

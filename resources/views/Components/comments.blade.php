@@ -4,18 +4,7 @@
 
 
         @auth
-            <x-comment-wrapper class="border border-info">
-                <form method="post" action="/blogs/{{ $blog->slug }}/comment">
-                    @csrf
-                    <div class="mb-3">
-                        <textarea name="comment" class="form-control" id="" rows="7" placeholder="Write Something ..."></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-primary float-end">Submit</button>
-                </form>
-                @error('comment')
-                    <p class="text-danger">{{ $message }}</p>
-                @enderror
-            </x-comment-wrapper>
+            <x-comment-form :blog="$blog" />
         @endauth
 
 

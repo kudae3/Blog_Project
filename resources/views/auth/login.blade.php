@@ -9,16 +9,12 @@
                         <div class="mb-3">
                           <label for="email" class="form-label">Email address</label>
                           <input name="email" type="email" class="form-control" id="email" aria-describedby="emailHelp" value={{old('email')}}>
-                          @error('email')
-                            <p class="text-danger">{{$message}}</p>
-                        @enderror
+                          <x-error-msg name="email" />
                         </div>
                         <div class="mb-3">
                           <label for="password" class="form-label">Password</label>
                           <input name="password" type="password" class="form-control" id="password">
-                            @error('password')
-                                <p class="text-danger">{{$message}}</p>
-                            @enderror
+                          <x-error-msg name="password" />
                         </div>
                         <button type="submit" class="btn btn-primary">Submit</button>
                       </form>

@@ -18,7 +18,7 @@ class CommentController extends Controller
             'user_id' => auth()->user()->id
         ]);
 
-        return redirect()->back();
+        return redirect('http://127.0.0.1:8000/blogs/'.$blog->slug);
 
     }
 }

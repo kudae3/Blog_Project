@@ -3,29 +3,39 @@
     <!-- singloe blog section -->
     <div class="container">
         <div class="row">
+
             <div class="col-md-6 mx-auto text-center">
-            <img
+
+                <img
                 src="https://creativecoder.s3.ap-southeast-1.amazonaws.com/blogs/GOLwpsybfhxH0DW8O6tRvpm4jCR6MZvDtGOFgjq0.jpg"
                 class="card-img-top"
                 alt="..."
             />
-            <h3 class="my-3">{{$blog->title}}</h3>
+
+            <button type="submit" class="btn btn-warning my-2">Subscribe Now</button>
+
+            <h3 class="my-4">{{$blog->title}}</h3>
+
             <div>
                 <a href='/?={{$blog->category->name}}'>
                     <btn class="btn btn-primary p-2 mb-2">{{$blog->category->name}}</btn>
                 </a>
                 <a href='/?={{$blog->author->username}}'>
-                    <p class="fw-bold">{{$blog->author->name}}</p>
+                    <p class="fw-bold my-3">{{$blog->author->name}}</p>
                 </a>
                 <p>{{$blog->created_at->diffForHumans()}}</p>
             </div>
+
             <p class="lh-md">{{$blog->body}}</p>
             </div>
         </div>
     </div>
 
-    <x-comments :blog="$blog" :comments="$blog->comments" />
-    <x-subcribe />
+    @if ($blog->comments->count())
+        <x-comments :blog="$blog"
+                    :comments="$blog->comments()->latest()->paginate(3)" />
+    @endif
+
     <x-suggest-blogs :blogs="$randomBlogs" />
 
 </x-layout>

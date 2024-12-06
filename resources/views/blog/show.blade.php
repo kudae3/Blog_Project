@@ -12,7 +12,8 @@
                 alt="..."
             />
 
-            <form action="" method="post">
+            <form action="/blogs/{{ $blog->slug }}/subscription" method="post">
+                @csrf
                 @auth
                     @if (auth()->user()->isSubscribed($blog))
                         <button type="submit" class="btn btn-danger my-2">Unsubscribe</button>

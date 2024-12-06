@@ -12,7 +12,15 @@
                 alt="..."
             />
 
-            <button type="submit" class="btn btn-warning my-2">Subscribe Now</button>
+            <form action="" method="post">
+                @auth
+                    @if (auth()->user()->isSubscribed($blog))
+                        <button type="submit" class="btn btn-danger my-2">Unsubscribe</button>
+                    @else
+                        <button type="submit" class="btn btn-primary my-2">Subscribe</button>
+                    @endif
+                @endauth
+            </form>
 
             <h3 class="my-4">{{$blog->title}}</h3>
 

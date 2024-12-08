@@ -11,7 +11,9 @@ Route::get('/', [BlogController::class, 'index']);
 Route::get('/blogs/{blog:slug}', [BlogController::class, 'show']);
 Route::post('/blogs/{blog:slug}/comment', [CommentController::class, 'store']);
 Route::post('/blogs/{blog:slug}/subscription', [SubscribeController::class, 'handleSubscribe']);
+
 Route::get('/blogs/admin/create', [BlogController::class, 'create'])->middleware('admin');
+Route::post('/blogs/admin/store', [BlogController::class, 'store'])->middleware('admin');
 
 Route::get('/register', [AuthController::class, 'create'])->middleware('guest');
 Route::post('/register', [AuthController::class, 'store'])->middleware('guest');

@@ -16,9 +16,10 @@ return new class extends Migration
             $table->foreignId('user_id');
             $table->foreignId('category_id');
             $table->string('title');
-            $table->string('slug');
+            $table->string('slug')->unique();
             $table->text('intro');
             $table->longText('body');
+            $table->string('thumbnail')->nullable();
             $table->timestamps();
         });
     }

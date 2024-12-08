@@ -21,8 +21,8 @@ class DatabaseSeeder extends Seeder
         // Category::truncate();
         // Blog::truncate();
 
-        $Alex = User::factory()->create(['name'=>'Alex','username'=>'Alex', 'email' => 'Alex@gmail.com', 'password' => 'alex123']);
-        $Thomas = User::factory()->create(['name'=>'Thomas','username'=>'Thomas']);
+        $Alex = User::factory()->create(['name'=>'Alex','username'=>'Alex','is_admin' => 1, 'email' => 'alex@gmail.com', 'password' => 'alex123']);
+        $Thomas = User::factory()->create(['name'=>'Thomas','username'=>'Thomas','is_admin' => 0, 'email' => 'thomas@gmail.com', 'password' => 'thomas123']);
 
         $frontend = Category::factory()->create(['name' => 'Frontend', 'slug'=> 'Frontend']);
         $backend = Category::factory()->create(['name' => 'backend', 'slug'=> 'Backend']);
@@ -30,7 +30,8 @@ class DatabaseSeeder extends Seeder
         Blog::factory(2)->create(['user_id'=> $Alex->id,'category_id' => $frontend->id]);
         Blog::factory(2)->create(['user_id'=> $Thomas->id,'category_id' => $backend->id]);
 
-        Comment::factory(2)->create();
+        Comment::factory()->create(['user_id' => $Alex->id]);
+        Comment::factory()->create(['user_id' => $Thomas->id]);
 
     }
 }

@@ -65,10 +65,12 @@ class BlogController extends Controller
             'category_id' => ['required', Rule::exists('blogs', 'id')]
         ]);
 
-        $path = request()->file('thumbnail')->store('thumbnails');
+        if(request('thumbnail')){
+            $path = request()->file('thumbnail')->store('thumbnails');
+            $data['thumbnail'] = $path;
+        };
 
         $data['user_id'] = auth()->user()->id;
-        $data['thumbnail'] = $path;
 
         Blog::create($data);
 

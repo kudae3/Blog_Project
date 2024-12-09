@@ -12,6 +12,7 @@
       integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU"
       crossorigin="anonymous"
     />
+    <link rel="stylesheet" href="/ckeditor5/ckeditor5.css">
 </head>
 
 <body id="home">
@@ -26,7 +27,7 @@
                 <a href="/" class="nav-link">{{auth()->user()->name}}</a>
                 <form action="/logout" method="post">
                     @csrf
-                    <button class="nav-link btn btn-submit">Logut</button>
+                    <button class="nav-link btn btn-submit">Logout</button>
                 </form>
             @else
                 <a href="/register" class="nav-link">Register</a>
@@ -34,8 +35,15 @@
             @endauth
 
             <a href="#blogs" class="nav-link">Blogs</a>
-            <a href="#subscribe" class="nav-link">Subscribe</a>
-            </div>
+
+            @auth()
+                @if (auth()->user()->is_admin)
+                    <a href="/blogs/admin/create" class="nav-link">Create</a>
+                @endif
+            @endauth
+
+
+        </div>
         </div>
     </nav>
 
@@ -57,14 +65,60 @@
             </ul>
             <p class="text-center">&copy; 2021 Blogs By creativecoder, Inc</p>
         </footer>
-        </div>
+    </div>
 
-
-        <script
+    <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
       crossorigin="anonymous"
     ></script>
+
+    <script type="importmap">
+        {
+            "imports": {
+                "ckeditor5": "/ckeditor5/ckeditor5.js",
+                "ckeditor5/": "/ckeditor5"
+            }
+        }
+    </script>
+
+    <script type="module">
+        import {
+            ClassicEditor,
+            Essentials,
+            Paragraph,
+            Bold,
+            Italic,
+            Font
+        } from 'ckeditor5';
+
+        ClassicEditor
+            .create( document.querySelector( '.editor' ), {
+                licenseKey: 'GPL', // Or <YOUR_LICENSE_KEY>
+                plugins: [ Essentials, Paragraph, Bold, Italic, Font ],
+                toolbar: [
+                    'undo', 'redo', '|', 'bold', 'italic', '|',
+                    'fontSize', 'fontFamily', 'fontColor', 'fontBackgroundColor'
+                ],
+                licenseKey: 'GPL'
+            } )
+            .then( editor => {
+                window.editor = editor;
+            } )
+            .catch( error => {
+                console.error( error );
+            } );
+    </script>
+
+    <!-- A friendly reminder to run on a server, remove this during the integration. -->
+    <script>
+            window.onload = function() {
+                if ( window.location.protocol === "file:" ) {
+                    alert( "This sample requires an HTTP server. Please serve this file with a web server." );
+                }
+            };
+    </script>
+
 
 </body>
 </html>

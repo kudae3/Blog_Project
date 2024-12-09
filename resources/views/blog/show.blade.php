@@ -35,7 +35,7 @@
                 <p>{{$blog->created_at->diffForHumans()}}</p>
             </div>
 
-            <p class="lh-md">{{$blog->body}}</p>
+            <p class="lh-md">{!! $blog->body !!}</p>
             </div>
         </div>
     </div>

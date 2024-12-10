@@ -1,11 +1,9 @@
-<x-layout>
-    <div class="col-md-8 mx-auto">
-
+<x-admin-layout>
         <x-comment-wrapper>
 
             <h5 class="text-center">Create a new Blog 📰🗽 </h5>
 
-            <form action="/blogs/admin/store" method="post" enctype="multipart/form-data">
+            <form action="/admin/blogs/store" method="post" enctype="multipart/form-data">
                 @csrf
 
                 <x-form.input name="title"/>
@@ -30,5 +28,4 @@
             </form>
 
         </x-comment-wrapper>
-    </div>
-</x-layout>
+</x-admin-layout>

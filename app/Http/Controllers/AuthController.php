@@ -24,14 +24,14 @@ class AuthController extends Controller
         $user = User::create($formData);
         // session()->flash('success', 'Welcome, '.$user->name.'!');
 
-        auth()->login($user);
+        Auth::login($user);
 
         return redirect('/')->with('success', 'Welcome, '.$user->name.'!');
     }
 
     // handle Logout
     public function logout(){
-        auth()->logout();
+        Auth::logout();
         return redirect('/')->with('success', 'Good Bye!');
     }
 
@@ -47,7 +47,12 @@ class AuthController extends Controller
             'password'=> ['required']
         ]);
         if(Auth::attempt($formData)){
-            return redirect('/')->with('success', 'Welcom Back!');
+            if(Auth::user()->is_admin){
+                return redirect('/admin/blogs');;
+            }
+            else{
+                return redirect('/')->with('success', 'Welcom Back!');
+            }
         }
         else{
             return redirect()->back()->withErrors([

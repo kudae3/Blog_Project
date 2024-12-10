@@ -38,7 +38,7 @@
 
             @auth()
                 @if (auth()->user()->is_admin)
-                    <a href="/blogs/admin/create" class="nav-link">Create</a>
+                    <a href="/admin/blogs" class="nav-link">Admin</a>
                 @endif
             @endauth
 

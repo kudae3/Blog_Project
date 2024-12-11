@@ -7,7 +7,7 @@
             <div class="col-md-6 mx-auto text-center">
 
                 <img
-                src={{ asset("storage/$blog->thumbnail") }}
+                src={{ asset($blog->thumbnail? "storage/$blog->thumbnail" : "images/logo.png") }}
                 class="card-img-top my-4"
                 alt="..."
             />
@@ -40,10 +40,8 @@
         </div>
     </div>
 
-    @if ($blog->comments->count())
-        <x-comments :blog="$blog"
-                    :comments="$blog->comments()->latest()->paginate(3)" />
-    @endif
+    <x-comments :blog="$blog"
+                :comments="$blog->comments()->latest()->paginate(3)" />
 
     <x-suggest-blogs :blogs="$randomBlogs" />
 

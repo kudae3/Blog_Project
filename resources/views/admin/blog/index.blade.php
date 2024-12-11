@@ -11,18 +11,25 @@
         <tbody>
             @foreach ($blogs as $blog)
             <tr>
-                <td><a href="/blogs/{{ $blog->slug }}">{{ $blog->title }}</a></td>
-                <td>{{ $blog->intro }}</td>
-                <td class="d-flex">
+                <td class="text-center"><a href="/blogs/{{ $blog->slug }}">{{ $blog->title }}</a></td>
 
-                    <a class="btn btn-success me-2" href="/admin/blogs/{{ $blog->slug }}/edit">Edit</a>
+                <td class="text-center">{{ $blog->intro }}</td>
 
-                    <form action="/admin/blogs/{{ $blog->id }}/delete" method="post">
-                        @csrf
-                        @method('delete')
-                        <button type="submit" class="show_confirm btn btn-danger">Delete</button>
-                    </form>
-                </td>
+                @if (Gate::allows('access-post', $blog))
+                    <td class="d-flex justify-content-center">
+                        <a class="btn btn-success me-2" href="/admin/blogs/{{ $blog->slug }}/edit">Edit</a>
+
+                        <form action="/admin/blogs/{{ $blog->id }}/delete" method="post">
+                            @csrf
+                            @method('delete')
+                            <button type="submit" class="show_confirm btn btn-danger">Delete</button>
+                        </form>
+                    </td>
+                @else
+                    <td></td>
+                @endif
+
+
               </tr>
             @endforeach
         </tbody>

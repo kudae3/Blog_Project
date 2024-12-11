@@ -3,7 +3,7 @@
     <div class="card">
 
         <img
-        src={{ asset("storage/$blog->thumbnail") }}
+        src={{ asset($blog->thumbnail? "storage/$blog->thumbnail" : "images/logo.png") }}
         class="card-img-top"
         alt="..."
         />

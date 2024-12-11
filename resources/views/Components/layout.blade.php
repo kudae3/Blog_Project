@@ -28,7 +28,7 @@
                 <a href="/" class="nav-link">{{auth()->user()->name}}</a>
                 <form action="/logout" method="post">
                     @csrf
-                    <button class="nav-link btn btn-submit">Logout</button>
+                    <button class="logout_confirm nav-link btn btn-submit">Logout</button>
                 </form>
             @else
                 <a href="/register" class="nav-link">Register</a>
@@ -114,8 +114,6 @@
 
     <script type="text/javascript">
 
-
-
         $('.show_confirm').click(function(event) {
 
             var form =  $(this).closest("form");
@@ -150,7 +148,37 @@
 
         });
 
+        $('.logout_confirm').click(function(event) {
 
+            var form =  $(this).closest("form");
+
+            var name = $(this).data("name");
+
+            event.preventDefault();
+
+            swal({
+
+                title: `Are you sure you want to logout?`,
+
+                icon: "warning",
+
+                buttons: true,
+
+                dangerMode: true,
+
+            })
+
+            .then((willLogout) => {
+
+                if (willLogout) {
+
+                form.submit();
+
+                }
+
+            });
+
+        });
 
     </script>
 

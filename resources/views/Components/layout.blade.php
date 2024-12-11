@@ -37,12 +37,9 @@
 
             <a href="#blogs" class="nav-link">Blogs</a>
 
-            @auth()
-                @if (auth()->user()->is_admin)
-                    <a href="/admin/blogs" class="nav-link">Admin</a>
-                @endif
-            @endauth
-
+            @if (Auth::user() && Auth::user()->is_admin)
+                <a href="/admin/blogs" class="nav-link">Dashboard</a>
+            @endif
 
         </div>
         </div>
@@ -156,7 +153,6 @@
 
 
     </script>
-
 
 </body>
 </html>

@@ -22,9 +22,14 @@ Route::post('/login', [AuthController::class, 'handleLogin']);
 Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth');
 
 //admin
-Route::get('/admin/blogs', [AdminBlogController::class, 'index'])->middleware('admin');
-Route::get('/admin/blogs/create', [AdminBlogController::class, 'create'])->middleware('admin');
-Route::post('/admin/blogs/store', [AdminBlogController::class, 'store'])->middleware('admin');
-Route::delete('/admin/blogs/{blog}/delete', [AdminBlogController::class, 'destroy'])->middleware('admin');
 
+Route::middleware(['admin'])->group(function(){
+    Route::get('/admin/blogs', [AdminBlogController::class, 'index'])->middleware('admin');
+    Route::get('/admin/blogs/create', [AdminBlogController::class, 'create'])->middleware('admin');
+    Route::post('/admin/blogs/store', [AdminBlogController::class, 'store'])->middleware('admin');
+    Route::delete('/admin/blogs/{blog}/delete', [AdminBlogController::class, 'destroy'])->middleware('admin');
+    Route::get('/admin/blogs/{blog:slug}/edit', [AdminBlogController::class, 'edit'])->middleware('admin');
+    Route::patch('/admin/blogs/{blog:slug}/update', [AdminBlogController::class, 'update'])->middleware('admin');
+
+});
 

@@ -11,10 +11,12 @@
         <tbody>
             @foreach ($blogs as $blog)
             <tr>
-                <td>{{ $blog->title }}</td>
+                <td><a href="/blogs/{{ $blog->slug }}">{{ $blog->title }}</a></td>
                 <td>{{ $blog->intro }}</td>
                 <td class="d-flex">
-                    <button class="btn btn-success me-2">Edit</button>
+
+                    <a class="btn btn-success me-2" href="/admin/blogs/{{ $blog->slug }}/edit">Edit</a>
+
                     <form action="/admin/blogs/{{ $blog->id }}/delete" method="post">
                         @csrf
                         @method('delete')

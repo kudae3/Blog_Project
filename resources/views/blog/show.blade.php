@@ -8,7 +8,7 @@
 
                 <img
                 src={{ asset("storage/$blog->thumbnail") }}
-                class="card-img-top"
+                class="card-img-top my-4"
                 alt="..."
             />
 
